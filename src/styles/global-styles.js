@@ -11,6 +11,7 @@ const GlobalStyle = createGlobalStyle`
 
   body {
     font-family: 'Nunito', sans-serif;
+    overflow: hidden;
   }
 
   body.fontLoaded {
@@ -26,6 +27,7 @@ const GlobalStyle = createGlobalStyle`
   p,
   label {
     line-height: 1.5em;
+    margin: 0;
   }
   
   button, input {
@@ -33,6 +35,46 @@ const GlobalStyle = createGlobalStyle`
     outline: none;
     border-radius: 3px;
     font-family: 'Nunito', sans-serif;
+  }
+  
+  .slider {
+    overflow: hidden;
+    position: relative;
+    height: 280px;
+
+    .slick-dots {
+        bottom: -17px;
+        height: 63px;
+        left: 40px;
+        text-align: left;
+        width: 90%;
+
+        li {
+            margin: 0;
+
+            button {
+                height: 13px;
+                width: 13px;
+                padding: 0;
+                border-radius: 13px;
+                background-color: rgba(26, 31, 38, 0.31);
+
+                &::before {
+                    content: "";
+                }
+            }
+        }
+
+        .slick-active button {
+            background: linear-gradient(270deg, #FF7338 0%, #F54732 100%);
+        }
+    }
+    .slick-list {
+      overflow: visible;
+    }
+    .slick-track {
+      padding: 35px 0;
+    }
   }
 `;
 

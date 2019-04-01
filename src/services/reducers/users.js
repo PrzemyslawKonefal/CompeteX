@@ -2,7 +2,8 @@ import * as types from '../actions/actionTypes';
 import { fromJS } from 'immutable'
 
 const initialState = fromJS({
-  users: []
+  users: [],
+
 });
 
 const users = (state = initialState, action) => {
