@@ -7,12 +7,21 @@ import { textEllipsis } from '../../helpers/functions';
 const Wrapper = styled.div`
   position: relative;
   box-sizing: border-box;
+  z-index: 10;
   display: flex;
   height: 205px;
   width: 500px;
   margin: 0 30px;
   border-radius: 8px;
   background: ${props => props.theme};
+  
+  @media screen and (max-width: 600px) {
+    width: 450px;
+  }
+  
+  @media screen and (max-width: 478px) {
+    width: 310px;
+  }
   
   &:first-of-type {
     margin-left: 0;
@@ -39,15 +48,26 @@ const Wrapper = styled.div`
 
 const HeroImage = styled.img`
   position: relative;
-  bottom: 25px;
+  z-index: 5;
   height: 230px;
+  transform: translateY(-25px);
+  
+  @media screen and (max-width: 478px) {
+    position: absolute;
+    right: 0;
+    top: 0;
+    height: 124px;
+    width: 120px;
+    object-position: 50% 0;
+    object-fit: cover;
+  }
 `;
 const HeroData = styled.div`
   padding: 30px 0 33px 40px;
 `;
 const Name = styled.p`
   height: 24px;
-  max-width: 265px;
+  max-width: 285px;
   margin: 0;
   padding: 0;
   font-size: 18px;
@@ -90,6 +110,10 @@ const LastActive = styled.p`
   font-size: 10px;
   font-weight: 800;
   line-height: 14px;
+  
+  @media screen and (max-width: 478px) {
+    border-bottom: 2px solid #FFFFFF;
+  }
 `;
 
 const Description = styled.p`
@@ -102,6 +126,10 @@ const Description = styled.p`
   letter-spacing: 1px;
   line-height: 16px;
   overflow: hidden;
+  
+  @media screen and (max-width: 478px) {
+    width: 270px;
+  }
 `;
 
 const Workouts = styled.div`

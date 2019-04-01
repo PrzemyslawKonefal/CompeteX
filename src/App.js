@@ -11,6 +11,10 @@ const AppWrapper = styled.div`
   min-height: 100%;
   padding: 0 16px;
   flex-direction: column;
+  
+  @media screen and (max-width: 600px) {
+    padding: 0 8px;
+  }
 `;
 const ContentWrapper = styled.main`
   position: relative;

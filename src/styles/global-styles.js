@@ -41,6 +41,10 @@ const GlobalStyle = createGlobalStyle`
     overflow: hidden;
     position: relative;
     height: 280px;
+    
+    @media screen and (max-width: 478px) {
+      overflow: visible;
+    }
 
     .slick-dots {
         bottom: -17px;

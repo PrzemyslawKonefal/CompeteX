@@ -20,6 +20,12 @@ const Wrapper = styled.button`
     : 'right: -50px;'}
   
   ${({ hidden }) => hidden && 'display: none;'}
+  
+  @media screen and (max-width: 478px) {
+    ${({ direction }) => direction === 'left'
+    ? 'left: -73px;'
+    : 'right: -60px;'}
+  }
   `;
 
 const Arrow = styled.span`
@@ -46,7 +52,6 @@ const Arrow = styled.span`
  * @param {boolean} hidden - button visibility
  */
 function SlideTrigger({ direction, buttonClick, hidden = false }) {
-  console.log(direction)
   return (
     <Wrapper
       onClick={buttonClick}
