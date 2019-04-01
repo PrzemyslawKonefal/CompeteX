@@ -8,6 +8,7 @@ import 'slick-carousel/slick/slick-theme.css';
 import { getUsers } from 'services/actions/users';
 import sliderSettings from './sliderSettings';
 import { SlideTrigger, UserListItem } from '../../components';
+import Dropdown from '../../components/Dropdown';
 
 const Wrapper = styled.div`
   padding: 25px;
@@ -75,6 +76,7 @@ class LandingPage extends Component {
         <Header>
           <p>Don&apos;t miss them</p>
           <h2>ONGOING</h2>
+          <Dropdown options={['xara', 'maxurta']}/>
         </Header>
         <Slider {...this.ongoingSettings} {...sliderSettings}>
           {usersComponents}
