@@ -10,11 +10,11 @@ const GlobalStyle = createGlobalStyle`
   }
 
   body {
-    font-family: 'Nunito', sans-serif;
     overflow: hidden;
+    margin: 0;
   }
-
-  body.fontLoaded {
+  
+  * {
     font-family: 'Nunito', sans-serif;
   }
 
@@ -88,9 +88,9 @@ const theme = createMuiTheme({
   },
   palette: {
     primary: {
-      light: '#ffcc88',
-      main: '#FFC371',
-      dark: '#dc9f71',
+      light: '#90ee02',
+      main: '#90ee02',
+      dark: '#59bb00',
       contrastText: '#fff',
     },
     secondary: {

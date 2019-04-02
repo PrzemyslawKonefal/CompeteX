@@ -7,8 +7,8 @@ export const users = [
     workouts: [{img: 'https://cdn2.stylecraze.com/wp-content/uploads/2014/04/1000-Calorie-Workout-To-Burn-Fat-%E2%80%93-Can-You-Really-Burn-1000-Calories-In-A-Day.jpg'}, {img: 'https://www.t-nation.com/system/publishing/articles/10005344/original/The-500-Workout.jpg?1505510812'}],
     style: 'green',
     bio: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.',
-    lastActive: '02-04-2019',
-    workoutsNumber: 33,
+    lastActive: '01-04-2019',
+    workoutsNumber: 38,
     labels: ['12% FAT', '190kg martwy'],
   },
   {
@@ -20,7 +20,7 @@ export const users = [
     style: 'yellow',
     bio: 'Podróżnik-Marzyciel. Za dnia strugam drewno, w nocy zamieniam się w przebiżula.',
     lastActive: '02-04-2019',
-    workoutsNumber: 33,
+    workoutsNumber: 17,
     labels: ['Bic 42cm', 'Broda'],
   },
   {
@@ -31,8 +31,8 @@ export const users = [
     workouts: [{ img: 'https://cdn2.stylecraze.com/wp-content/uploads/2014/04/1000-Calorie-Workout-To-Burn-Fat-%E2%80%93-Can-You-Really-Burn-1000-Calories-In-A-Day.jpg' }, { img: 'https://www.t-nation.com/system/publishing/articles/10005344/original/The-500-Workout.jpg?1505510812' }],
     style: 'blue',
     bio: 'Moją siłą są stalowe nerwy',
-    lastActive: '02-04-2019',
-    workoutsNumber: 33,
+    lastActive: '03-04-2012',
+    workoutsNumber: 221,
     labels: ['120kg klata', 'Bezbrzusze'],
 
   },
@@ -44,8 +44,8 @@ export const users = [
     workouts: [{img: 'https://cdn2.stylecraze.com/wp-content/uploads/2014/04/1000-Calorie-Workout-To-Burn-Fat-%E2%80%93-Can-You-Really-Burn-1000-Calories-In-A-Day.jpg'}, {img: 'https://www.t-nation.com/system/publishing/articles/10005344/original/The-500-Workout.jpg?1505510812'}],
     style: 'red',
     bio: 'lorem ipsum tekatonibum krystus tui hesus',
-    lastActive: '02-04-2019',
-    workoutsNumber: 33,
+    lastActive: '05-03-2019',
+    workoutsNumber: 1000,
     labels: ['HULK'],
   },
 ];

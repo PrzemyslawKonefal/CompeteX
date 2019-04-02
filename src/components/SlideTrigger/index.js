@@ -24,7 +24,7 @@ const Wrapper = styled.button`
   @media screen and (max-width: 478px) {
     ${({ direction }) => direction === 'left'
     ? 'left: -73px;'
-    : 'right: -60px;'}
+    : 'right: -73px;'}
   }
   `;
 
@@ -42,6 +42,12 @@ const Arrow = styled.span`
       transform: rotate(225deg);`
     : `margin-left: 15px;
       transform: rotate(45deg);`}
+  
+  @media screen and (max-width: 478px) {
+    ${({ direction }) => direction === 'left'
+    ? 'margin-right: 8px'
+    : 'margin-left: 8px'}
+  }
 `;
 
 /**

@@ -7,7 +7,7 @@ const Search = styled.input`
   align-items: center;
   height: 35px;
   padding: 8px 8px 8px 50px;
-  background: rgba(255, 255, 255, 0.23);
+  background: rgba(0, 0, 0, 0.23);
   color: #ffffff;
   
   &::placeholder {
@@ -15,7 +15,7 @@ const Search = styled.input`
   }
 
   &:hover {
-    background: rgba(255, 255, 255, 0.3);
+    background: rgba(0, 0, 0, 0.3);
   }
 `;
 

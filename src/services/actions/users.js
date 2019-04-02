@@ -29,3 +29,10 @@ export const getUsers = () => {
       })
   };
 }
+
+export const filterUsers = (filter) => {
+  return {
+    type: types.FILTER_USERS,
+    filter
+  }
+}

@@ -5,6 +5,7 @@ import IconButton from '@material-ui/core/IconButton';
 import AccountCircle from '@material-ui/icons/AccountCircle';
 import AddIcon from '@material-ui/icons/Add';
 import NotificationsIcon from '@material-ui/icons/Notifications';
+import { connect } from 'react-redux';
 import { DefaultTheme } from '../../styles/global-styles';
 import Logo from './Logo';
 import NavbarContainer from './NavbarContainer';
@@ -14,15 +15,39 @@ import Search from '../../components/Search';
 import Badge from '../../components/Badge';
 import SearchBox from './SearchBox';
 import SearchIcon from './SearchIcon';
+import { filterUsers, getUsers } from '../../services/actions/users';
+import { LoginDialog } from '../../components';
 
-export default class FeaturePage extends React.Component {
-  state = { searchInput: '' };
+class Navbar extends React.Component {
+  state = {
+    searchInput: '',
+    openAccountDialog: false,
+    loginForm: {
+      email: '',
+      password: '',
+      rememberMe: false,
+    },
+  };
 
-  handleSearchChange = e => {
+  handleSearchChange = (e) => {
     this.setState({ searchInput: e.target.value });
   };
 
+  handleAccountClick = () => {
+    this.setState({ openAccountDialog: !this.state.openAccountDialog });
+  }
+
+  handleLoginFormChange = (field, value) => {
+    this.setState({
+      loginForm: {
+        ...this.state.loginForm,
+        [field]: value,
+      },
+    });
+  }
+
   render() {
+    const { searchInput, openAccountDialog, loginForm } = this.state;
     return (
       <MuiThemeProvider theme={DefaultTheme}>
         <NavbarContainer position="fixed" color="primary">
@@ -37,6 +62,7 @@ export default class FeaturePage extends React.Component {
                 <Search
                   onChange={this.handleSearchChange}
                   placeholder="Search..."
+                  value={searchInput}
                 />
               </SearchBox>
             </CategoryWrapper>
@@ -49,13 +75,33 @@ export default class FeaturePage extends React.Component {
                   <NotificationsIcon />
                 </Badge>
               </IconButton>
-              <IconButton color="inherit">
+              <IconButton color="inherit" onClick={this.handleAccountClick}>
                 <AccountCircle />
               </IconButton>
             </CategoryWrapper>
           </Categories>
         </NavbarContainer>
+        <LoginDialog
+          onCancel={this.handleAccountClick}
+          onConfirm={this.handleLoginConfirm}
+          onChange={this.handleLoginFormChange}
+          email={loginForm.email}
+          password={loginForm.password}
+          rememberMe={loginForm.rememberMe}
+          open={openAccountDialog}
+        />
       </MuiThemeProvider>
     );
   }
 }
+
+const mapStateToProps = state => ({
+  users: state.users.get('users'),
+});
+
+const mapDispatchToProps = {
+  getUsers,
+  filterUsers,
+};
+
+export default connect(mapStateToProps, mapDispatchToProps)(Navbar);

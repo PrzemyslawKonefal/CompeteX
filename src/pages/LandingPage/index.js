@@ -1,49 +1,19 @@
 import React, { Component } from 'react';
-import styled from 'styled-components';
 import { connect } from 'react-redux';
 import Slider from 'react-slick';
 import 'slick-carousel/slick/slick.css';
 import 'slick-carousel/slick/slick-theme.css';
 
-import { getUsers } from 'services/actions/users';
+import { getUsers, filterUsers } from '../../services/actions/users';
+import { USER_FILTERS } from '../../helpers/constants';
 import sliderSettings from './sliderSettings';
-import { SlideTrigger, UserListItem } from '../../components';
-import Dropdown from '../../components/Dropdown';
-
-const Wrapper = styled.div`
-  padding: 25px;
-  
-  @media screen and (max-width: 600px) {
-    padding: 25px 0;
-  }
-`;
-
-const Header = styled.header`
-  min-width: 200px;
-  padding-left: 40px;
-  border-bottom: 1px solid rgba(26,31,38,0.1);
-
-  p {
-      margin-bottom: 4px;
-      opacity: 0.5;
-      color: #1A1F26;
-      font-size: 12px;
-      font-weight: 600;
-      letter-spacing: 0.11px;
-      line-height: 16px;
-  }
-  h2 {
-      position: relative;
-      margin: 0 40px 5px 0;
-      color: #1A1F26;
-      font-size: 24px;
-      font-weight: 800;
-      letter-spacing: 1px;
-      line-height: 32px;
-  }
-`;
+import { Wrapper, Header } from './styles';
+import { SlideTrigger, UserListItem, SingleSelect } from '../../components';
 
 class LandingPage extends Component {
+  state = {
+    selectedFilter: ''
+  };
 
   ongoingSettings = {
     ref: (slider) => { this.ongoingSlider = slider; },
@@ -64,23 +34,52 @@ class LandingPage extends Component {
     if (!users.length) {
       getUsers();
     }
+    document.onkeydown = ({key}) => {
+      if (key === 'ArrowRight') { this.ongoingSlider.slickNext(); }
+      if (key === 'ArrowLeft') { this.ongoingSlider.slickPrev(); }
+    };
+  }
+
+  handleFilterChange = ({target}) => {
+    const shouldRevertArray = this.state.selectedFilter === target.value;
+    if (shouldRevertArray) { this.props.filterUsers(); }
+    else {
+      this.setState({ selectedFilter: target.value });
+      this.props.filterUsers(target.value, this.state.selectedFilter);
+    }
+    this.ongoingSlider.slickGoTo(0);
   }
 
   render() {
     const { users } = this.props;
+    const { selectedFilter } = this.state;
     const usersComponents = users.map(user => (
       <UserListItem user={user} key={user.email} />
     ))
     return (
       <Wrapper>
-        <Header>
-          <p>Don&apos;t miss them</p>
-          <h2>ONGOING</h2>
-          <Dropdown options={['xara', 'maxurta']}/>
-        </Header>
-        <Slider {...this.ongoingSettings} {...sliderSettings}>
-          {usersComponents}
-        </Slider>
+          <Header>
+            <div>
+              <p>Nie przegap tej rywalizacji</p>
+              <h2>Bohaterowie</h2>
+            </div>
+            <SingleSelect
+              options={USER_FILTERS}
+              label="Sortuj"
+              defaultEmpty
+              selected={selectedFilter}
+              change={this.handleFilterChange}
+            />
+          </Header>
+          <Slider {...this.ongoingSettings} {...sliderSettings}>
+            {usersComponents}
+          </Slider>
+          <Header>
+            <div>
+              <p>Nie przegap tej rywalizacji</p>
+              <h2>Treningi</h2>
+            </div>
+          </Header>
       </Wrapper>
     );
   }
@@ -91,7 +90,8 @@ const mapStateToProps = state => ({
 });
 
 const mapDispatchToProps = {
-  getUsers
+  getUsers,
+  filterUsers
 };
 
 export default connect(mapStateToProps, mapDispatchToProps)(LandingPage);

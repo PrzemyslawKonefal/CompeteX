@@ -3,7 +3,8 @@ import { Badge } from '@material-ui/core';
 
 const Mark = styled(Badge)`
   span {
-  background: #ff7432 !important;
+    background: #59bb00 !important;
+    color: #FFFFFF !important;
   }
   
   color: #ffffff;
