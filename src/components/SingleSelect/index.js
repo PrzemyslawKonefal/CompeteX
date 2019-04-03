@@ -30,26 +30,26 @@ const Label = styled(Select)`
   }
 `;
 
-const SingleSelect = props => {
-  const options = props.options.map(option => (
+const SingleSelect = ({options, label, selected, change}) => {
+  const optionsList = options.map(option => (
     <MenuItem component="div" value={option} key={option}>
       {option}
     </MenuItem>
   ));
-  const htmlLabel = `${props.label.replace(/\s/g, ' ')}`;
+  const htmlLabel = `${label.replace(/\s/g, ' ')}`;
   return (
     <MuiThemeProvider theme={DefaultTheme}>
       <FormControl>
-        <InputLabel htmlFor={htmlLabel}>{props.label}</InputLabel>
+        <InputLabel htmlFor={htmlLabel}>{label}</InputLabel>
         <Label
-          value={props.selected}
-          onChange={props.change}
+          value={selected}
+          onChange={change}
           inputProps={{
-            name: props.label,
+            name: label,
             id: htmlLabel,
           }}
         >
-          {options}
+          {optionsList}
         </Label>
       </FormControl>
     </MuiThemeProvider>
@@ -57,6 +57,10 @@ const SingleSelect = props => {
 };
 
 SingleSelect.propTypes = {
+  options: PropTypes.array,
+  label: PropTypes.string,
+  selected: PropTypes.string,
+  change: PropTypes.func
 };
 
 export default SingleSelect;

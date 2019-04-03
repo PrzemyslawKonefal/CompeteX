@@ -19,7 +19,7 @@ const AppWrapper = styled.div`
 const ContentWrapper = styled.main`
   position: relative;
   top: 64px;
-`
+`;
 
 export default function App() {
   return (

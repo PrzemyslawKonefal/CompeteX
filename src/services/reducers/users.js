@@ -1,9 +1,12 @@
+import { fromJS } from 'immutable';
 import * as types from '../actions/actionTypes';
-import { fromJS } from 'immutable'
 import { dataStringToNumber } from '../../helpers/functions';
 
-const initialState = fromJS({
+export const initialState = fromJS({
   users: [],
+  activeUser: {
+    username: ''
+  }
 });
 
 const users = (state = initialState, action) => {
@@ -11,7 +14,6 @@ const users = (state = initialState, action) => {
     case types.STORE_USERS: return state.set('users', action.users);
     case types.FILTER_USERS:
       let sortedUsers = state.get('users');
-      let x = [...sortedUsers];
       switch (action.filter) {
         case 'Ostatnia aktywność': {
           sortedUsers = sortedUsers.sort((a, b) => {

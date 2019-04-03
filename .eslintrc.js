@@ -22,6 +22,7 @@ module.exports = {
         ],
         'one-var-declaration-per-line': ['error', 'initializations'],
         'react/require-default-props': 'off',
+        'react/forbid-prop-types': 'off',
         'react/jsx-filename-extension': [
             'error',
             {
@@ -38,5 +39,12 @@ module.exports = {
         ],
         'jsx-a11y/href-no-hash': 'off',
         'jsx-a11y/anchor-is-valid': ['warn', { aspects: ['invalidHref'] }],
+        'no-trailing-spaces': 'off',
+        'comma-dangle': ['error', 'never'],
+        'no-multiple-empty-lines': ["error", {
+            max: 1,
+            maxEOF: 1,
+            maxBOF: 1
+        }]
     },
 };
