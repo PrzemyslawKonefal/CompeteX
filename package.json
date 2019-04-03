@@ -9,6 +9,7 @@
     "axios": "^0.18.0",
     "core-js": "^2.5.7",
     "eslint-plugin-react-hooks": "^1.6.0",
+    "formik": "^1.5.2",
     "immutable": "^4.0.0-rc.12",
     "moment": "^2.22.2",
     "prop-types": "^15.6.2",

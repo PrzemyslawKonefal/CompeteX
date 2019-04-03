@@ -4,7 +4,6 @@ import {
   Dialog,
   DialogTitle,
   DialogContent,
-  DialogContentText,
   MuiThemeProvider,
   TextField,
   FormControlLabel,
@@ -12,17 +11,23 @@ import {
   DialogActions,
   Button,
 } from '@material-ui/core';
+import { Star } from '@material-ui/icons'
 import { DefaultTheme } from '../../styles/global-styles';
+import { EMAIL_REGEX } from '../../helpers/constants';
 
 export default function LoginDialog({
-  onCancel, onConfirm, open, email, password, rememberMe, onChange,
+  onCancel, onConfirm, open, email, password, rememberMe, onChange, onInputBlur
 }) {
+  const errors = {
+    email: !EMAIL_REGEX.test(email.value) && email.wasUnfocused,
+    password: password.value.length < 8 && password.wasUnfocused
+  };
+
   return (
     <MuiThemeProvider theme={DefaultTheme}>
       <Dialog onClose={onCancel} open={open} maxWidth="sm" fullWidth>
         <DialogTitle>Zaloguj się</DialogTitle>
         <DialogContent>
-          <DialogContentText>
             <TextField
               autoFocus
               margin="dense"
@@ -30,9 +35,10 @@ export default function LoginDialog({
               label="Email Address"
               type="email"
               fullWidth
-              value={email}
+              value={email.value}
               onChange={({ target }) => onChange('email', target.value)}
-              error={email.length < 3}
+              error={errors.email}
+              onBlur={() => onInputBlur('email')}
             />
             <TextField
               margin="dense"
@@ -40,8 +46,10 @@ export default function LoginDialog({
               label="Password"
               type="password"
               fullWidth
-              value={password}
+              value={password.value}
               onChange={({ target }) => onChange('password', target.value)}
+              error={errors.password}
+              onBlur={() => onInputBlur('password')}
             />
             <FormControlLabel
               control={
@@ -54,11 +62,10 @@ export default function LoginDialog({
               }
               label="Remember me"
             />
-          </DialogContentText>
         </DialogContent>
         <DialogActions>
-          <Button onClick={onCancel} color="secondary">Cancel</Button>
-          <Button onClick={onConfirm} color="primary">Sign in</Button>
+          <Button onClick={onCancel}>Cancel</Button>
+          <Button onClick={onConfirm} color="primary" variant="contained">Sign in<Star/></Button>
         </DialogActions>
       </Dialog>
     </MuiThemeProvider>
@@ -69,8 +76,9 @@ LoginDialog.propTypes = {
   onChange: PropTypes.func,
   onCancel: PropTypes.func,
   onConfirm: PropTypes.func,
+  onInputBlur: PropTypes.func,
   open: PropTypes.bool,
-  email: PropTypes.string,
-  password: PropTypes.string,
+  email: PropTypes.object,
+  password: PropTypes.object,
   rememberMe: PropTypes.bool
 };

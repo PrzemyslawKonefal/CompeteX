@@ -97,9 +97,15 @@ const theme = createMuiTheme({
       light: '#ff717c',
       main: '#FFFFFF',
       dark: '#dc5a68',
-      contrastText: '#fff',
+      contrastText: '#ff717c'
     },
-  },
+    default: {
+      light: '#ffd33a',
+      main: '#ff1d49',
+      dark: '#c8b1dc',
+      contrastText: '#2e79ff',
+    }
+  }
 });
 
 export const DefaultTheme = createMuiTheme(theme);
