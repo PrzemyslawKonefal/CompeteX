@@ -1,5 +1,6 @@
 export const users = [
   {
+    id: 72,
     firstName: 'Konrad',
     lastName: 'Michno',
     email: 'kmichno@gmail.com',
@@ -12,6 +13,7 @@ export const users = [
     labels: ['12% FAT', '190kg martwy'],
   },
   {
+    id: 22,
     firstName: 'Dominik',
     lastName: 'Ozga',
     email: 'dozga@gmail.com',
@@ -24,6 +26,7 @@ export const users = [
     labels: ['Bic 42cm', 'Broda'],
   },
   {
+    id: 12,
     firstName: 'Roland',
     lastName: 'Zwoliński',
     email: 'rzwolinski@gmail.com',
@@ -37,6 +40,7 @@ export const users = [
 
   },
   {
+    id: 7,
     firstName: 'Bartosz',
     lastName: 'Słysz',
     email: 'bslysz@gmail.com',

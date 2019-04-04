@@ -16,6 +16,7 @@ const GlobalStyle = createGlobalStyle`
   
   * {
     font-family: 'Nunito', sans-serif;
+    transition: opacity .3s ease-out, color .3s ease-out, background .3s ease-out, top .3s ease-out, bottom .3s ease-out, left .3s ease-out, right .3s ease-out;
   }
 
   #app {
@@ -23,11 +24,22 @@ const GlobalStyle = createGlobalStyle`
     min-height: 100%;
     min-width: 100%;
   }
+  
+  a {
+    text-decoration: none;
+    color: inherit;
+  }
 
   p,
   label {
     line-height: 1.5em;
     margin: 0;
+  }
+  
+  ul {
+    margin: 0;
+    padding: 0;
+    list-style: none;
   }
   
   button, input {

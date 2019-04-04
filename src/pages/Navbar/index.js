@@ -9,19 +9,15 @@ import NotificationsIcon from '@material-ui/icons/Notifications';
 import { createStructuredSelector } from 'reselect';
 
 import { DefaultTheme } from '../../styles/global-styles';
-import Logo from './Logo';
-import NavbarContainer from './NavbarContainer';
-import CategoryWrapper from './CategoryWrapper';
-import Categories from './Categories';
+import { Categories, CategoryWrapper, NavbarContainer, Logo, SearchBox, SearchGlass, SearchUsersList } from './styles';
 import Search from '../../components/Search';
 import Badge from '../../components/Badge';
-import SearchBox from './SearchBox';
-import SearchIcon from './SearchIcon';
-import { LoginDialog } from '../../components';
+import { LoginDialog, SearchUserElement } from '../../components';
 import { makeSelectUserData } from './selectors';
 import { login } from '../../services/actions/auth';
+import { makeSelectUsers } from '../LandingPage/selectors';
 
-function Navbar() {
+function Navbar({userData, users}) {
   const [searchInput, setSearchInput] = useState('');
   const [openAccountDialog, setOpenAccountDialog] = useState(false);
   const [loginForm, setLoginForm] = useState({
@@ -74,6 +70,15 @@ function Navbar() {
   function handleLoginConfirm() {
     console.log(loginForm);
   }
+
+  const searchedUsers = users.map(user => (
+    <SearchUserElement
+      key={user.email}
+      user={user}
+    >
+      {user.firstName}
+    </SearchUserElement>
+  ))
   return (
     <MuiThemeProvider theme={DefaultTheme}>
       <NavbarContainer position="fixed" color="primary">
@@ -84,10 +89,10 @@ function Navbar() {
             </IconButton>
             <Logo> CompeteX </Logo>
             <SearchBox>
-              <SearchIcon />
+              <SearchGlass />
               <Search
                 onChange={handleSearchChange}
-                placeholder="Search..."
+                placeholder="Szukaj użytkowników..."
                 value={searchInput}
               />
             </SearchBox>
@@ -117,12 +122,16 @@ function Navbar() {
         rememberMe={loginForm.rememberMe}
         open={openAccountDialog}
       />
-    </MuiThemeProvider>
+      <SearchUsersList visible={searchInput}>
+        {searchedUsers}
+      </SearchUsersList>
+      </MuiThemeProvider>
   );
 }
 
 const mapStateToProps = createStructuredSelector({
-  userData: makeSelectUserData()
+  userData: makeSelectUserData(),
+  users: makeSelectUsers()
 });
 
 const mapDispatchToProps = {
