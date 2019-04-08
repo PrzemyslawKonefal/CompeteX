@@ -7,18 +7,16 @@ import ImmutablePropTypes from 'react-immutable-proptypes';
 import PropTypes from 'prop-types';
 import { createStructuredSelector } from 'reselect';
 import { Tabs } from '@material-ui/core';
-import { Event, DirectionsBike, FilterList as Filter } from '@material-ui/icons';
+import { Event, DirectionsBike } from '@material-ui/icons'
 
-import { Trainings } from '../index';
 import { getUsers, filterUsers } from '../../services/actions/users';
-import { getTrainings } from '../../services/actions/trainings';
-import { USER_FILTERS, TRAINING_SORTS } from '../../helpers/constants';
+import { USER_FILTERS } from '../../helpers/constants';
 import sliderSettings from './sliderSettings';
 import { Wrapper, Header, StickyHeader, Tab } from './styles';
 import { SlideTrigger, UserListItem, SingleSelect } from '../../components';
-import { makeSelectTrainingsSort, makeSelectUsers } from './selectors';
+import { makeSelectUsers } from './selectors';
 
-function LandingPage({ users, onGetUsers, onFilterUsers, activeSort, onGetTrainings }) {
+function LandingPage({ users, onGetUsers, onFilterUsers}) {
   const [selectedFilter, setSelectedFilter] = useState('');
   const [ongoingSlider, setOngoingSlider] = useState(null);
   const [tabValue, setTabValue] = useState('Treningi');
@@ -42,9 +40,9 @@ function LandingPage({ users, onGetUsers, onFilterUsers, activeSort, onGetTraini
   ));
   const activeTab = tabValue === 'Treningi'
     ? <Trainings />
-    : null;
+    : <Events />
 
-  function handleFilterUsersChange({ target }) {
+  function handleFilterChange({ target }) {
     const shouldRevertArray = selectedFilter === target.value;
     if (shouldRevertArray){
       onFilterUsers();
@@ -59,14 +57,9 @@ function LandingPage({ users, onGetUsers, onFilterUsers, activeSort, onGetTraini
     setTabValue(value);
   }
 
-  function handleSortTrainings({ target }) {
-    onGetTrainings(0, target.value);
-  }
-
   useEffect(() => {
     if (!users.length) {
       onGetUsers();
-      onGetTrainings(0, activeSort);
     }
   }, []);
 
@@ -80,6 +73,7 @@ function LandingPage({ users, onGetUsers, onFilterUsers, activeSort, onGetTraini
       }
     };
   }, [ongoingSlider]);
+
   return (
     <Wrapper>
       <Header>
@@ -90,9 +84,9 @@ function LandingPage({ users, onGetUsers, onFilterUsers, activeSort, onGetTraini
         <SingleSelect
           options={USER_FILTERS}
           label="Sortuj"
+          defaultEmpty
           selected={selectedFilter}
-          change={handleFilterUsersChange}
-          IconComponent={Filter}
+          change={handleFilterChange}
         />
       </Header>
       <Slider {...ongoingSettings} {...sliderSettings}>
@@ -111,13 +105,6 @@ function LandingPage({ users, onGetUsers, onFilterUsers, activeSort, onGetTraini
             <Tab label="Wydarzenia" icon={<Event />}/>
           </Tabs>
         </div>
-        <SingleSelect
-          options={TRAINING_SORTS}
-          label="Sortuj"
-          selected={activeSort}
-          change={handleSortTrainings}
-          IconComponent={Filter}
-        />
       </StickyHeader>
       {activeTab}
     </Wrapper>
@@ -125,14 +112,12 @@ function LandingPage({ users, onGetUsers, onFilterUsers, activeSort, onGetTraini
 }
 
 const mapStateToProps = createStructuredSelector({
-  users: makeSelectUsers(),
-  activeSort: makeSelectTrainingsSort()
+  users: makeSelectUsers()
 });
 
 const mapDispatchToProps = {
   onGetUsers: getUsers,
-  onFilterUsers: filterUsers,
-  onGetTrainings: getTrainings
+  onFilterUsers: filterUsers
 };
 
 LandingPage.propTypes = {
@@ -140,14 +125,8 @@ LandingPage.propTypes = {
     ImmutablePropTypes.list,
     PropTypes.array
   ]),
-  activeSort: PropTypes.oneOfType([
-    ImmutablePropTypes.list,
-    PropTypes.array
-  ]),
   onGetUsers: PropTypes.func,
-  onSortTrainings: PropTypes.func,
-  onFilterUsers: PropTypes.func,
-  onGetTrainings: PropTypes.func
+  onFilterUsers: PropTypes.func
 };
 
 export default connect(mapStateToProps, mapDispatchToProps)(LandingPage);

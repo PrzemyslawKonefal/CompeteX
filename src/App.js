@@ -1,9 +1,10 @@
 import React from 'react';
 import styled from 'styled-components';
 import { Switch, Route } from 'react-router-dom';
+import { MuiThemeProvider } from '@material-ui/core';
 import { Navbar, LandingPage } from './pages';
 
-import GlobalStyle from './styles/global-styles';
+import GlobalStyle, { DefaultTheme } from './styles/global-styles';
 
 const AppWrapper = styled.div`
   margin: 0 auto;
@@ -24,13 +25,15 @@ const ContentWrapper = styled.main`
 export default function App() {
   return (
     <AppWrapper>
-      <Navbar />
-      <ContentWrapper>
-        <Switch>
-          <Route path="/" exact component={LandingPage} />
-        </Switch>
-      </ContentWrapper>
-      <GlobalStyle />
+      <MuiThemeProvider theme={DefaultTheme}>
+        <Navbar />
+        <ContentWrapper>
+          <Switch>
+            <Route path="/" exact component={LandingPage} />
+          </Switch>
+        </ContentWrapper>
+        <GlobalStyle />
+      </MuiThemeProvider>
     </AppWrapper>
   );
 }

@@ -29,7 +29,7 @@ const Label = styled(Select)`
   }
 `;
 
-const SingleSelect = ({options, label, selected, change, ...rest}) => {
+const SingleSelect = ({options, label, selected, change}) => {
   const optionsList = options.map(option => (
     <MenuItem component="div" value={option} key={option}>
       {option}
@@ -46,7 +46,6 @@ const SingleSelect = ({options, label, selected, change, ...rest}) => {
           name: label,
           id: htmlLabel,
         }}
-        {...rest}
       >
         {optionsList}
       </Label>

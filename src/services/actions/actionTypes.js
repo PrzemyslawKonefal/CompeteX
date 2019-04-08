@@ -1,8 +1,10 @@
 export const TOGGLE_LOADER = 'TOGGLE_LOADER';
 
-export const LOGIN_REQUEST = 'LOGIN_REQUEST';
 export const LOGIN_SUCCESS = 'LOGIN_SUCCESS';
 
 export const STORE_USERS = 'STORE_USERS';
 export const FILTER_USERS = 'FILTER_USERS';
+
+export const STORE_TRAININGS = 'STORE_TRAININGS';
+export const SET_TRAINING_LIKE = 'SET_TRAINING_LIKE';
 

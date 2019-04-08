@@ -16,15 +16,15 @@ const Wrapper = styled.button`
   cursor: pointer;
   
   ${({ direction }) => direction === 'left'
-    ? 'left: -50px;'
-    : 'right: -50px;'}
+  ? 'left: -50px;'
+  : 'right: -50px;'}
   
   ${({ hidden }) => hidden && 'display: none;'}
   
   @media screen and (max-width: 478px) {
     ${({ direction }) => direction === 'left'
-    ? 'left: -73px;'
-    : 'right: -73px;'}
+  ? 'left: -73px;'
+  : 'right: -73px;'}
   }
   `;
 
@@ -37,16 +37,16 @@ const Arrow = styled.span`
   border-right: 2px solid #1aa6ff;
   
   ${({ direction }) => direction === 'left'
-    ? `float: right;
+  ? `float: right;
       margin-right: 15px;
       transform: rotate(225deg);`
-    : `margin-left: 15px;
+  : `margin-left: 15px;
       transform: rotate(45deg);`}
   
   @media screen and (max-width: 478px) {
     ${({ direction }) => direction === 'left'
-    ? 'margin-right: 8px'
-    : 'margin-left: 8px'}
+  ? 'margin-right: 8px'
+  : 'margin-left: 8px'}
   }
 `;
 

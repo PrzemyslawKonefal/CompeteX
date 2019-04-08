@@ -1,3 +1,5 @@
+import { TRAINING_SORTS } from './constants';
+
 export function textEllipsis(text, maxLength) {
   if (text.length > maxLength) {
     if (text.substring(0, maxLength).split(' ').some(word => word.length > (2 / 3) * maxLength)) {
@@ -35,6 +37,14 @@ export function getCookie(cname) {
   return '';
 }
 
+export const translateSorts = (sort) => {
+  switch (sort) {
+    case TRAINING_SORTS[0]: return 'date';
+    case TRAINING_SORTS[1]: return 'views';
+    case TRAINING_SORTS[2]: return 'comments';
+    case TRAINING_SORTS[3]: return 'duration';
+  }
+};
 
 
 

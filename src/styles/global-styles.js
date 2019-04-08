@@ -10,7 +10,8 @@ const GlobalStyle = createGlobalStyle`
   }
 
   body {
-    overflow: hidden;
+    overflow-x: hidden;
+    overflow-y: auto;
     margin: 0;
   }
   
@@ -47,6 +48,10 @@ const GlobalStyle = createGlobalStyle`
     outline: none;
     border-radius: 3px;
     font-family: 'Nunito', sans-serif;
+  }
+  
+  button {
+   cursor: pointer;
   }
   
   .slider {
