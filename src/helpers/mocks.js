@@ -72,10 +72,10 @@ export const trainingsMock = [
     table: {},
     likes: [
       {
-        id: 72,
-        firstName: 'Roland',
-        lastName: 'Zwoliński',
-        img: 'https://static1.squarespace.com/static/55947ac3e4b0fa882882cd65/58ab7d7229687f223f18a4d4/58ab9a90f7e0ab024bc506f5/1487641285336/NS_0036.png'
+        id: 22,
+        firstName: 'Dominik',
+        lastName: 'Ozga',
+        img: 'https://toppng.com/public/uploads/preview/happy-person-11545688398rslqmyfw4g.png'
       }
     ],
     views: 6422,
@@ -206,7 +206,7 @@ export const trainingsMock = [
       id: 22,
       firstName: 'Dominik',
       lastName: 'Ozga',
-      img: 'https://toppng.com/public/uploads/preview/happy-person-11545688398rslqmyfw4g.png',
+      img: 'https://toppng.com/public/uploads/preview/happy-person-11545688398rslqmyfw4g.png'
     },
     id: 4,
     img: 'http://www.borntoworkout.com/wp-content/uploads/2016/08/Vin-Diesel-Riddick-Workout-300x300.jpg',

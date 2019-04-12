@@ -21,6 +21,7 @@ export const NavbarContainer = styled(AppBar)`
   display: flex;
   height: ${navbarHeight};
   padding: 0 24px;
+  background: linear-gradient(-90deg, #F58C49, #E65B2A);
   
   @media screen and (max-width: 1000px) {
     padding: 0;

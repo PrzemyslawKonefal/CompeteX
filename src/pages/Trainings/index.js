@@ -10,7 +10,7 @@ import { Wrapper } from './styles';
 import { makeSelectTrainings } from './selectors';
 import { Workout } from '../../components';
 
-function Trainings({trainings, myId, enqueueSnackbar}) {
+function Trainings({trainings, myId = 22, enqueueSnackbar, onLikeTraining}) {
   const workouts = trainings.map(training => (
     <Workout
       key={training.id}
@@ -25,6 +25,8 @@ function Trainings({trainings, myId, enqueueSnackbar}) {
   function handleLikeClick(id) {
     if (!myId) {
       enqueueSnackbar('Only logged in users can like workouts!', { variant: 'warning' } );
+    } else {
+      onLikeTraining(id, myId);
     }
   }
   function handleTableClick(id) {
@@ -55,7 +57,6 @@ Trainings.propTypes = {
     ImmutablePropTypes.list,
     PropTypes.array
   ]),
-  onViewTraining: PropTypes.func,
   onLikeTraining: PropTypes.func,
   enqueueSnackbar: PropTypes.func,
   myId: PropTypes.number

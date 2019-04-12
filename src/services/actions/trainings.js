@@ -3,7 +3,6 @@ import * as types from './actionTypes';
 
 import { toggleLoader } from './global';
 import { trainingsMock } from '../../helpers/mocks';
-import { TRAINING_SORTS } from '../../helpers/constants';
 import { translateSorts } from '../../helpers/functions';
 
 function storeTrainings(trainings, page, sort) {
@@ -15,10 +14,11 @@ function storeTrainings(trainings, page, sort) {
   };
 }
 
-function setTrainingLike(id) {
+function setTrainingLike(id, myId) {
   return {
     type: types.SET_TRAINING_LIKE,
-    id
+    id,
+    myId
   };
 }
 
@@ -52,12 +52,14 @@ export const viewTraining = (id) => {
   }
 };
 
-export const likeTraining = id => (dispatch) => {
+export const likeTraining = (id, myId) => (dispatch) => {
   axios(`/workouts/${id}/like`, {
     method: 'PATCH',
-    headers: { Authorization: 'blabla' }
   })
     .then(() => {
-      dispatch(setTrainingLike(id));
-    });
+      dispatch(setTrainingLike(id, myId));
+    })
+    .catch(() => {
+      dispatch(setTrainingLike(id, myId));
+    })
 };

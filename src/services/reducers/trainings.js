@@ -5,7 +5,8 @@ import { TRAINING_SORTS } from '../../helpers/constants'
 export const initialState = fromJS({
   trainingsList: [],
   activeSort: TRAINING_SORTS[0],
-  page: 0
+  page: 0,
+  toggledLikeIds: []
 });
 
 const trainings = (state = initialState, action) => {
@@ -15,6 +16,8 @@ const trainings = (state = initialState, action) => {
       activeSort: action.sort || state.get('activeSort'),
       page: action.page + 1
     });
+    case types.SET_TRAINING_LIKE:
+      return state.update('toggledLikeIds', toggledLikeIds => toggledLikeIds.push(action.id));
     default: return state;
   }
 };

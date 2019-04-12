@@ -42,7 +42,7 @@ function Loader({showLoader}) {
   const [triggered, setTriggered] = useState(false);
   return (
     <Wrapper visible={showLoader} small={triggered} onClick={() => setTriggered(!triggered)}>
-      <TriangeLoad color="#90ee02" width={200} heigth={200} type="Triangle" />
+      <TriangeLoad color="#F58C49" width={200} heigth={200} type="Triangle" />
     </Wrapper>
   );
 }

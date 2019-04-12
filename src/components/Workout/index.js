@@ -13,9 +13,27 @@ const Wrapper = styled.div`
     height: 300px;
     margin: 0 15px 15px 0;
     padding: 0 0 30px 0;
-    background: #90ee02;
+    background: #F58C49;
     border-radius: 8px;
-    box-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.2), 0 1px 1px 0 rgba(0, 0, 0, 0.14), 0 2px 1px -1px rgba(0, 0, 0, 0.12);
+    box-shadow: 1px 1px 10px rgba(0, 0, 0, 0.6);
+    transition: box-shadow .3s ease-out;
+    
+    &:hover {
+      box-shadow: 0 0 15px rgba(0, 0, 0, 0.8);
+    }
+    
+    &:nth-of-type(4n +1) {
+      background: linear-gradient(-90deg, #F58C49 ,#E8C750);
+    }
+    &:nth-of-type(4n +2) {
+      background: linear-gradient(-90deg, #e65343, #F58C49);
+    }
+    &:nth-of-type(4n +3) {
+      background: linear-gradient(-90deg, #C71D6F, #e65343);
+    }
+    &:nth-of-type(4n +4) {
+      background: linear-gradient(-90deg, #c727b9, #C71D6F);
+    }
   `;
 
 const MainImgBox = styled.button`
@@ -92,7 +110,7 @@ function Workout({ workout, workoutClick, myId, likeClick, tableClick }) {
       <WorkoutInfoBox>
         <SplitBox>
           <Button onClick={() => likeClick(workout.id)}>
-            <ThumbUp color={workout.likes.some(like => like.id === myId) ? 'primary' : 'secondary'}/>
+            <ThumbUp color={workout.likes.some(person => person.id === myId) ? 'primary' : 'secondary'}/>
             <Number>{workout.likes.length}</Number>
           </Button>
           <UnclickableBox>
