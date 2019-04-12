@@ -23,10 +23,9 @@ function setTrainingLike(id) {
 }
 
 export const getTrainings = (page = 0, sortName) => (dispatch) => {
-  console.log(sortName);
-  dispatch(toggleLoader(true));
   const sort = translateSorts(sortName);
   const link = `/workouts?page=${page}${sort ? `&sort=${sort}` : ''}`;
+  dispatch(toggleLoader(true));
   axios.get(link)
     .then((response) => {
       if (response.status === 201) {
@@ -54,15 +53,11 @@ export const viewTraining = (id) => {
 };
 
 export const likeTraining = id => (dispatch) => {
-  const viewedWorkoutsString = localStorage.getItem('alreadyViewedWorkoutsOnDevice');
-  const viewedWorkoutsList = viewedWorkoutsString.split('#');
-  if (!viewedWorkoutsList.some(workoutId => workoutId === id)) {
-    axios(`/workouts/${id}/like`, {
-      method: 'PATCH',
-      headers: { Authorization: 'blabla' }
-    })
-      .then(() => {
-        dispatch(setTrainingLike(id));
-      });
-  }
+  axios(`/workouts/${id}/like`, {
+    method: 'PATCH',
+    headers: { Authorization: 'blabla' }
+  })
+    .then(() => {
+      dispatch(setTrainingLike(id));
+    });
 };

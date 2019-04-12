@@ -140,10 +140,7 @@ LandingPage.propTypes = {
     ImmutablePropTypes.list,
     PropTypes.array
   ]),
-  activeSort: PropTypes.oneOfType([
-    ImmutablePropTypes.list,
-    PropTypes.array
-  ]),
+  activeSort: PropTypes.string,
   onGetUsers: PropTypes.func,
   onSortTrainings: PropTypes.func,
   onFilterUsers: PropTypes.func,

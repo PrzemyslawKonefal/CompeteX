@@ -135,6 +135,7 @@ const Description = styled.p`
 const Workouts = styled.div`
   display: flex;
   align-items: center;
+  justify-content: center;
   margin: 16px 0 0 0;
 `;
 

@@ -51,6 +51,7 @@ const GlobalStyle = createGlobalStyle`
   }
   
   button {
+   background: none;
    cursor: pointer;
   }
   
@@ -107,8 +108,8 @@ const theme = createMuiTheme({
     primary: {
       light: '#90ee02',
       main: '#90ee02',
-      dark: '#59bb00',
-      contrastText: '#fff',
+      dark: '#4e9b00',
+      contrastText: '#fff'
     },
     secondary: {
       light: '#ff717c',

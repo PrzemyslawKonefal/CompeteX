@@ -3,8 +3,10 @@ import styled from 'styled-components';
 import { Switch, Route } from 'react-router-dom';
 import { MuiThemeProvider } from '@material-ui/core';
 import { Navbar, LandingPage } from './pages';
+import { SnackbarProvider } from 'notistack';
 
 import GlobalStyle, { DefaultTheme } from './styles/global-styles';
+import Loader from './pages/Loader';
 
 const AppWrapper = styled.div`
   margin: 0 auto;
@@ -24,16 +26,19 @@ const ContentWrapper = styled.main`
 
 export default function App() {
   return (
-    <AppWrapper>
-      <MuiThemeProvider theme={DefaultTheme}>
-        <Navbar />
-        <ContentWrapper>
-          <Switch>
-            <Route path="/" exact component={LandingPage} />
-          </Switch>
-        </ContentWrapper>
-        <GlobalStyle />
-      </MuiThemeProvider>
-    </AppWrapper>
+    <SnackbarProvider maxSnack={3} preventDuplicate>
+      <AppWrapper>
+        <Loader/>
+        <MuiThemeProvider theme={DefaultTheme}>
+          <Navbar />
+          <ContentWrapper>
+            <Switch>
+              <Route path="/" exact component={LandingPage} />
+            </Switch>
+          </ContentWrapper>
+          <GlobalStyle />
+        </MuiThemeProvider>
+      </AppWrapper>
+    </SnackbarProvider>
   );
 }

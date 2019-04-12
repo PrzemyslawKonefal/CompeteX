@@ -3,16 +3,36 @@ import { connect } from 'react-redux';
 import ImmutablePropTypes from 'react-immutable-proptypes';
 import PropTypes from 'prop-types';
 import { createStructuredSelector } from 'reselect';
+import { withSnackbar } from 'notistack';
 
 import { viewTraining, likeTraining } from '../../services/actions/trainings';
 import { Wrapper } from './styles';
 import { makeSelectTrainings } from './selectors';
 import { Workout } from '../../components';
 
-function Trainings({trainings, onGetTrainings}) {
+function Trainings({trainings, myId, enqueueSnackbar}) {
   const workouts = trainings.map(training => (
-    <Workout workout={training} key={training.id}/>
+    <Workout
+      key={training.id}
+      workout={training}
+      workoutClick={handleWorkoutClick}
+      likeClick={handleLikeClick}
+      tableClick={handleTableClick}
+      myId={myId}
+    />
   ));
+
+  function handleLikeClick(id) {
+    if (!myId) {
+      enqueueSnackbar('Only logged in users can like workouts!', { variant: 'warning' } );
+    }
+  }
+  function handleTableClick(id) {
+
+  }
+  function handleWorkoutClick(id) {
+
+  }
 
   return (
     <Wrapper>
@@ -36,7 +56,9 @@ Trainings.propTypes = {
     PropTypes.array
   ]),
   onViewTraining: PropTypes.func,
-  onLikeTraining: PropTypes.func
+  onLikeTraining: PropTypes.func,
+  enqueueSnackbar: PropTypes.func,
+  myId: PropTypes.number
 };
 
-export default connect(mapStateToProps, mapDispatchToProps)(Trainings);
+export default withSnackbar(connect(mapStateToProps, mapDispatchToProps)(Trainings));
