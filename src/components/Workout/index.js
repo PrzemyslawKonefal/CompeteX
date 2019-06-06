@@ -96,6 +96,12 @@ const UnclickableBox = styled.div`
   padding: 0;
 `;
 
+const Thumb = styled(ThumbUp)`
+  && {
+    color: ${props => props.iconColor ? props.iconColor : '#FFF'};
+  }
+`;
+
 function Workout({ workout, workoutClick, myId, likeClick, tableClick }) {
   const workoutDetails = workout.table && (
     <Button onClick={() => tableClick(workout.id)}>
@@ -105,12 +111,12 @@ function Workout({ workout, workoutClick, myId, likeClick, tableClick }) {
   return (
     <Wrapper>
       <MainImgBox onClick={() => workoutClick(workout.id)}>
-        <MainImg src={workout.img || defaultWorkout} alt="Kliknij mnie"/>
+        <MainImg src={workout.img || defaultWorkout} alt=""/>
       </MainImgBox>
       <WorkoutInfoBox>
         <SplitBox>
           <Button onClick={() => likeClick(workout.id)}>
-            <ThumbUp color={workout.likes.some(person => person.id === myId) ? 'primary' : 'secondary'}/>
+            <Thumb iconColor={workout.likes.some(person => person.id === myId) && '#88d34b'}/>
             <Number>{workout.likes.length}</Number>
           </Button>
           <UnclickableBox>

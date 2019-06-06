@@ -17,6 +17,9 @@ const trainings = (state = initialState, action) => {
       page: action.page + 1
     });
     case types.SET_TRAINING_LIKE:
+      if (state.get('toggledLikeIds').some(likeId => likeId === action.id)) {
+        return state.set('toggledLikeIds', state.get('toggledLikeIds').filter(id => id !== action.id))
+      }
       return state.update('toggledLikeIds', toggledLikeIds => toggledLikeIds.push(action.id));
     default: return state;
   }

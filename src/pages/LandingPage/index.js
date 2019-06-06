@@ -21,7 +21,7 @@ import { makeSelectTrainingsSort, makeSelectUsers } from './selectors';
 function LandingPage({ users, onGetUsers, onFilterUsers, activeSort, onGetTrainings }) {
   const [selectedFilter, setSelectedFilter] = useState('');
   const [ongoingSlider, setOngoingSlider] = useState(null);
-  const [tabValue, setTabValue] = useState('Treningi');
+  const [tabValue, setTabValue] = useState('Trainings');
   const ongoingSettings = {
     ref: (slider) => {
       setOngoingSlider(slider);
@@ -40,13 +40,13 @@ function LandingPage({ users, onGetUsers, onFilterUsers, activeSort, onGetTraini
   const usersComponents = users.map(user => (
     <UserListItem user={user} key={user.email}/>
   ));
-  const activeTab = tabValue === 'Treningi'
+  const activeTab = tabValue === 'Trainings'
     ? <Trainings />
     : null;
 
   function handleFilterUsersChange({ target }) {
     const shouldRevertArray = selectedFilter === target.value;
-    if (shouldRevertArray){
+    if (shouldRevertArray) {
       onFilterUsers();
     } else {
       setSelectedFilter(target.value);
@@ -107,7 +107,7 @@ function LandingPage({ users, onGetUsers, onFilterUsers, activeSort, onGetTraini
             textColor="primary"
             onChange={handleTabChange}
           >
-            <Tab label="Treningi" value='Treningi' icon={<DirectionsBike />} />
+            <Tab label="Treningi" value="Trainings" icon={<DirectionsBike />} />
             <Tab label="Wydarzenia" icon={<Event />}/>
           </Tabs>
         </div>
